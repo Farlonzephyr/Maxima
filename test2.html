@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Quote Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        // Make the first AJAX request to the Quotable API
+        $.ajax({
+          url: "https://api.quotable.io/random",
+          success: function(data) {
+            // Update the HTML elements with the first quote and author
+            $("#quote1").text(data.content);
+            $("#author1").text("- " + data.author);
+
+            // Make the second AJAX request to the Quotable API
+            $.ajax({
+              url: "https://api.quotable.io/random",
+              success: function(data) {
+                // Update the HTML elements with the second quote and author
+                $("#quote2").text(data.content);
+                $("#author2").text("- " + data.author);
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Random Quote Generator</h1>
+    <p id="quote1"></p>
+    <p id="author1"></p>
+    <p id="quote2"></p>
+    <p id="author2"></p>
+  </body>
+</html>
